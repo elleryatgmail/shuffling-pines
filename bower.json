@@ -1,14 +1,14 @@
 {
   "name": "shuffling-pines",
-  "version": "0.0.1",
+  "version": "0.0.0",
+  "homepage": "https://github.com/CSCI-E32/shuffling-pines#readme",
   "authors": [
-    ""
+    "Ellery Coleman <ellery.coleman@gmail.com>"
   ],
   "description": "",
-  "main": "app.js",
+  "main": "",
   "moduleType": [],
   "license": "MIT",
-  "homepage": "",
   "private": true,
   "ignore": [
     "**/.*",
@@ -19,6 +19,8 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.5",
-    "angular": "~1.4.6"
+    "jquery": "~2.1.4",
+    "angular": "~1.4.7",
+    "angular-mocks": "~1.4.7"
   }
 }
