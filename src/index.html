@@ -35,7 +35,7 @@
           <div role="tabpanel" class="tab-pane active" id="form">
             <div>
 
-              <form class="col-md-6 well">
+              <form ng-controller="LogEverything as le" class="col-md-6 well">
                 <div class="form-group">
                   <label for="guest-name">Guest Name</label>
                   <input type="text" class="form-control" id="guest-name" placeholder="">
@@ -60,8 +60,11 @@
                   <label for="location">Location</label>
                   <textarea class="form-control" id="location"></textarea>
                 </div>
-                <button type="submit" class="btn">Submit</button>
+                <button ng-click="le.writeConsole('ellery is testing')"   type="submit" class="btn">Submit</button>
               </form>
+
+
+
 
               <!-- bound display -->
               <div ng-show="false" class="col-md-6 well">
