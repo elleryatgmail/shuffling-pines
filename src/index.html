@@ -35,32 +35,32 @@
           <div role="tabpanel" class="tab-pane active" id="form">
             <div>
 
-              <form ng-controller="LogEverything as le" class="col-md-6 well">
+              <form name="le.form" ng-controller="LogEverything as le" class="col-md-6 well">
                 <div class="form-group">
                   <label for="guest-name">Guest Name</label>
-                  <input type="text" class="form-control" id="guest-name" placeholder="">
+                  <input type="text" class="form-control" id="guest-name" ng-model="le.guestname" placeholder="">
                 </div>
                 <div class="form-group">
                   <label for="transition-date">Transition Date</label>
-                  <input type="date" class="form-control" id="transition-date" placeholder="">
+                  <input type="date" class="form-control" id="transition-date" ng-model="le.transdate" placeholder="">
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="pickup-dropoff" id="pickup" value="pickup" checked>
+                    <input type="radio" name="pickup-dropoff" id="pickup" ng-model="le.pickup" value="pickup" checked>
                     Pick-up
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="pickup-dropoff" id="dropoff" value="dropoff">
+                    <input type="radio" name="pickup-dropoff" id="dropoff" ng-model="le.dropoff" value="dropoff">
                     Drop-off
                   </label>
                 </div>
                 <div class="form-group">
                   <label for="location">Location</label>
-                  <textarea class="form-control" id="location"></textarea>
+                  <textarea class="form-control" id="location" ng-model="le.location"></textarea>
                 </div>
-                <button ng-click="le.writeConsole('ellery is testing')"   type="submit" class="btn">Submit</button>
+                <button ng-click="le.writeConsole('someone clicked submit')"   type="submit" class="btn">Submit</button>
               </form>
 
 
