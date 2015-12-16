@@ -34,35 +34,35 @@
 
 
           <!-- Tab pane 1 -->
-          <div role="tabpanel" class="tab-pane active" id="form" ng-controller="collectData as cd">
+          <div role="tabpanel" class="tab-pane active" id="form" ng-controller="formController as fc">
             <div>
 
               <form class="col-md-6 well">
                 <div class="form-group">
                   <label for="guest-name">Guest Name</label>
-                  <input type="text" class="form-control" id="guest-name" ng-model="cd.guestname" placeholder="">
+                  <input type="text" class="form-control" id="guest-name" ng-model="fc.guestname" placeholder="">
                 </div>
                 <div class="form-group">
                   <label for="transition-date">Transition Date</label>
-                  <input type="date" class="form-control" id="transition-date" ng-model="cd.transdate" placeholder="">
+                  <input type="date" class="form-control" id="transition-date" ng-model="fc.transdate" placeholder="">
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="pickup-dropoff" id="pickup" ng-model="cd.pickdrop" value="pickup" checked>
+                    <input type="radio" name="pickup-dropoff" id="pickup" ng-model="fc.pickdrop" value="pickup" checked>
                     Pick-up
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="pickup-dropoff" id="dropoff" ng-model="cd.pickdrop" value="dropoff">
+                    <input type="radio" name="pickup-dropoff" id="dropoff" ng-model="fc.pickdrop" value="dropoff">
                     Drop-off
                   </label>
                 </div>
                 <div class="form-group">
                   <label for="location">Location</label>
-                  <textarea class="form-control" id="location" ng-model="cd.location"></textarea>
+                  <textarea class="form-control" id="location" ng-model="fc.location"></textarea>
                 </div>
-                <button ng-click="cd.writeConsole('someone clicked submit')"   type="submit" class="btn">Submit</button>
+                <button ng-click="fc.writeConsole('someone clicked submit')"   type="submit" class="btn">Submit</button>
               </form>
 
 
@@ -72,19 +72,19 @@
               <div ng-show="true" class="col-md-6 well">
                 <div ng-show="true" class="form-group">
                   <label>Name: </label>
-				  {{ cd.guestname }}
+				  {{ fc.guestname }}
                 </div>
                 <div ng-show="true" class="form-group">
                   <label>Transition Date: </label>
-				  {{ cd.transdate }}
+				  {{ fc.transdate }}
                 </div>
                 <div ng-show="true" class="form-group">
                   <label>Status: </label>
-				  {{ cd.pickdrop }}
+				  {{ fc.pickdrop }}
                 </div>
                 <div ng-show="true" class="form-group">
                   <label>Location: </label>
-				  {{ cd.location }}
+				  {{ fc.location }}
                 </div>
               </div>
 
