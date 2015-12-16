@@ -1,6 +1,6 @@
 var app = angular.module('shuffling', []);
 
-app.controller('LogEverything', ['elService',function(elService){
+app.controller('LogEverything', ['elService','changeTab',function(elService,changeTab){
   var le= this;
 
 
@@ -12,6 +12,7 @@ app.controller('LogEverything', ['elService',function(elService){
 	 console.log("dropoff: " + le.dropoff);
 	 console.log("location: " + le.location);
 	 elService.talk();
+	 changeTab.execute();
   };
 
 
@@ -25,6 +26,20 @@ app.service('elService', [function(){
 	};	   
 
 }]);
+
+
+app.service('changeTab', [function(){
+	this.execute= function(){
+       var target = $(".nav-tabs li.active");
+	   var sibling = target.next();
+	   if(sibling.is("li")){
+		   sibling.children("a").tab("show");
+	   }
+	   console.log(target);
+	};
+	
+}]);
+
 
 
 app.controller('TabController', [function(){
