@@ -3,14 +3,22 @@
 // Application
 var app = angular.module('shuffling', []);
 
+localStorage.removeItem('guests');
+
+// initialize guest list with some data at app startup
+app.guests= [{  guestname: "Santa Claus"
+             },
+             {  guestname: "Rudolph the Red-nosed Reindeer"
+			 },
+             {  guestname: "Frosty the Snowman"
+			 }
+			 ];
+
 
 
 // Controller 1 of 2
 app.controller('formController', ['elService','changeTab',function(elService,changeTab){
   var fc= this;
-
-  fc.myStorage= localStorage;
-  fc.myStorage.setItem('myname','ellery');
 
   fc.writeConsole= function(str){
      console.log("str:" + str);
@@ -22,9 +30,35 @@ app.controller('formController', ['elService','changeTab',function(elService,cha
 	 elService.talk();
 	 changeTab.execute();
 	 console.log("myStorage: " + fc.myStorage);
+	 console.log("localStorage.length: " + localStorage.length);
+	 console.log("localStorage.keys: ");
+	 for (var key in localStorage){
+		 console.log("     * " + key);
+		 localStorage.removeItem(key);
+	 }
   };
 
 }]);
+
+
+
+// Controller 2 of 2
+app.controller('guestController', [function(){
+	var gc= this;
+    
+
+	// Initialize guest list on application startup
+	if(localStorage.length === 0)
+    {    localStorage["guests"]= JSON.stringify(app.guests);
+    }
+
+    gc.guests= JSON.parse(localStorage["guests"]);
+
+	gc.mesg= "this is a variable test";
+
+}]);
+
+
 
 
 
@@ -39,7 +73,6 @@ app.service('elService', [function(){
 
 
 
-
 // Service 2 of 2
 app.service('changeTab', [function(){
 	this.execute= function(){
@@ -49,18 +82,7 @@ app.service('changeTab', [function(){
 		   sibling.children("a").tab("show");
 	   }
 	};
-	
-}]);
-
-
-
-
-
-// Controller 2 of 2
-app.controller('guestController', [function(){
-
-
-
-
 
 }]);
+
+

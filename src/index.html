@@ -17,6 +17,7 @@
 	    <script src="app.js"></script>
 
 
+        <link rel="stylesheet" href="styles.css"/>
   </head>
 
   <body>
@@ -97,11 +98,10 @@
 
 
           <!-- Tab pane 2 -->
-          <div role="tabpanel" class="tab-pane" id="guests">
-            <ul class="list-unstyled">
-              <li>
-
-              </li>
+          <div role="tabpanel" class="tab-pane" id="guests" ng-controller="guestController as gc">
+			  {{ gc.mesg }}
+            <ul class="list-group">
+				<li class="list-group-item" ng-repeat="(index,guest) in gc.guests"> {{ guest.guestname }} </li>
             </ul>
           </div>
 
