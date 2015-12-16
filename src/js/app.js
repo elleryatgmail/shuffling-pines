@@ -3,7 +3,7 @@
 // Application
 var app = angular.module('shuffling', []);
 
-localStorage.removeItem('guests');
+// localStorage.removeItem('guests');
 
 // initialize guest list with some data at app startup
 app.guests= [{  guestname: "Santa Claus",
@@ -11,11 +11,11 @@ app.guests= [{  guestname: "Santa Claus",
 			     pickdrop: "pickup",
 				 location: "North Pole"
              },
-             {  guestname: "Rudolph the Red-nosed Reindeer"
+             {  guestname: "Rudolph the Red-nosed Reindeer",
 	            transdate: "2015-12-26T06:00:00.000Z",
 			     pickdrop: "dropoff"
 			 },
-             {  guestname: "Frosty the Snowman"
+             {  guestname: "Frosty the Snowman",
 	            transdate: "2015-12-27T06:00:00.000Z",
 			     pickdrop: "pickup",
 				 location: "Venice Beach, CA"
@@ -28,12 +28,11 @@ app.guests= [{  guestname: "Santa Claus",
 app.controller('formController', ['elService','changeTab',function(elService,changeTab){
   var fc= this;
 
-  fc.writeConsole= function(str){
-     console.log("str:" + str);
+  fc.storeData= function(){
+
 	 console.log("guest name: " + fc.guestname);
 	 console.log("transition date: " + fc.transdate);
-	 console.log("pickup: " + fc.pickup);
-	 console.log("dropoff: " + fc.dropoff);
+	 console.log("dropoff/pickup: " + fc.pickdrop);
 	 console.log("location: " + fc.location);
 	 elService.talk();
 	 changeTab.execute();
@@ -57,10 +56,10 @@ app.controller('guestController', [function(){
 
 	// Initialize guest list on application startup
 	if(localStorage.length === 0)
-    {    localStorage["guests"]= JSON.stringify(app.guests);
+    {    localStorage.guests= JSON.stringify(app.guests);
     }
 
-    gc.guests= JSON.parse(localStorage["guests"]);
+    gc.guests= JSON.parse(localStorage.guests);
 
 	gc.mesg= "this is a variable test";
 
