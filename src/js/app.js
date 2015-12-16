@@ -6,11 +6,19 @@ var app = angular.module('shuffling', []);
 localStorage.removeItem('guests');
 
 // initialize guest list with some data at app startup
-app.guests= [{  guestname: "Santa Claus"
+app.guests= [{  guestname: "Santa Claus",
+	            transdate: "2015-12-25T06:00:00.000Z",
+			     pickdrop: "pickup",
+				 location: "North Pole"
              },
              {  guestname: "Rudolph the Red-nosed Reindeer"
+	            transdate: "2015-12-26T06:00:00.000Z",
+			     pickdrop: "dropoff"
 			 },
              {  guestname: "Frosty the Snowman"
+	            transdate: "2015-12-27T06:00:00.000Z",
+			     pickdrop: "pickup",
+				 location: "Venice Beach, CA"
 			 }
 			 ];
 
