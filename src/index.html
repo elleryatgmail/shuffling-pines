@@ -31,11 +31,13 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
+
+
           <!-- Tab pane 1 -->
-          <div role="tabpanel" class="tab-pane active" id="form">
+          <div role="tabpanel" class="tab-pane active" id="form" ng-controller="LogEverything as le">
             <div>
 
-              <form name="le.form" ng-controller="LogEverything as le" class="col-md-6 well">
+              <form class="col-md-6 well">
                 <div class="form-group">
                   <label for="guest-name">Guest Name</label>
                   <input type="text" class="form-control" id="guest-name" ng-model="le.guestname" placeholder="">
@@ -46,13 +48,13 @@
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="pickup-dropoff" id="pickup" ng-model="le.pickup" value="pickup" checked>
+                    <input type="radio" name="pickup-dropoff" id="pickup" ng-model="le.pickdrop" value="pickup" checked>
                     Pick-up
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="pickup-dropoff" id="dropoff" ng-model="le.dropoff" value="dropoff">
+                    <input type="radio" name="pickup-dropoff" id="dropoff" ng-model="le.pickdrop" value="dropoff">
                     Drop-off
                   </label>
                 </div>
@@ -67,22 +69,22 @@
 
 
               <!-- bound display -->
-              <div ng-show="false" class="col-md-6 well">
-                <div ng-show="false" class="form-group">
+              <div ng-show="true" class="col-md-6 well">
+                <div ng-show="true" class="form-group">
                   <label>Name: </label>
-                  John Harvard
+				  {{ le.guestname }}
                 </div>
-                <div ng-show="false" class="form-group">
+                <div ng-show="true" class="form-group">
                   <label>Transition Date: </label>
-                  today!
+				  {{ le.transdate }}
                 </div>
-                <div ng-show="false" class="form-group">
+                <div ng-show="true" class="form-group">
                   <label>Status: </label>
-                  drop-off
+				  {{ le.pickdrop }}
                 </div>
-                <div ng-show="false" class="form-group">
+                <div ng-show="true" class="form-group">
                   <label>Location: </label>
-                  right here
+				  {{ le.location }}
                 </div>
               </div>
 
