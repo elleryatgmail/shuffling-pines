@@ -1,18 +1,21 @@
 var app = angular.module('shuffling', []);
 
-app.controller('LogEverything', ['elService','changeTab',function(elService,changeTab){
-  var le= this;
+app.controller('collectData', ['elService','changeTab',function(elService,changeTab){
+  var cd= this;
 
+  cd.myStorage= localStorage;
+  cd.myStorage.setItem('myname','ellery');
 
-  le.writeConsole= function(str){
+  cd.writeConsole= function(str){
      console.log("str:" + str);
-	 console.log("guest name: " + le.guestname);
-	 console.log("transition date: " + le.transdate);
-	 console.log("pickup: " + le.pickup);
-	 console.log("dropoff: " + le.dropoff);
-	 console.log("location: " + le.location);
+	 console.log("guest name: " + cd.guestname);
+	 console.log("transition date: " + cd.transdate);
+	 console.log("pickup: " + cd.pickup);
+	 console.log("dropoff: " + cd.dropoff);
+	 console.log("location: " + cd.location);
 	 elService.talk();
 	 changeTab.execute();
+	 console.log("myStorage: " + cd.myStorage);
   };
 
 
@@ -35,7 +38,6 @@ app.service('changeTab', [function(){
 	   if(sibling.is("li")){
 		   sibling.children("a").tab("show");
 	   }
-	   console.log(target);
 	};
 	
 }]);
