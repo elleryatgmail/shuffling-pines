@@ -9,8 +9,8 @@ This version of my homework2 assignment accomplishes the following:
 
 * implements the add and remove guest functions
 * implements tab toggling on submit
-* uses angular controllers and services, as well as the ng-repeat tag for listing guests.
-* displays 
+* uses angular controllers and services, as well as the ng-repeat tag for listing guests
+* displays updated localStorage after each add
 
 
 #Here's how to run it:

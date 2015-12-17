@@ -49,7 +49,6 @@ app.controller('guestController', ['readService','writeService',function(readSer
     gc.removeGuest= function(index){
 	  writeService.removeGuest(index);
       gc.guests= readService.read();
-	  console.log("index: " + index);
     };
 
 	gc.mesg= " ";
@@ -63,11 +62,8 @@ app.controller('guestController', ['readService','writeService',function(readSer
 
 
 
-
-
-
 	
-// Service 1 of 4
+// Service 1 of 4 - just a template
 app.service('elService', [function(){
     this.talk= function(){
 	   console.log("elService() at your service...");
@@ -78,7 +74,7 @@ app.service('elService', [function(){
 
 
 
-// Service 2 of 4
+// Service 2 of 4 - flips between bootstrap tabs
 app.service('changeTab', [function(){
 	this.execute= function(){
        var target = $(".nav-tabs li.active");
@@ -121,6 +117,7 @@ app.service('writeService', [function(){
 	   writeSvc.guests= JSON.parse(localStorage.guests);
        writeSvc.guests.push(formData);
        localStorage.guests= JSON.stringify(writeSvc.guests);
+	   console.log("Updated LocalStorage: " + JSON.stringify(localStorage.guests));
 	};
 
 
