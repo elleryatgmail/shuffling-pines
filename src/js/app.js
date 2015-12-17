@@ -25,41 +25,29 @@ app.guests= [{  guestname: "Santa Claus",
 
 
 // Controller 1 of 2
-app.controller('formController', ['elService','changeTab',function(elService,changeTab){
+app.controller('formController', ['elService','changeTab','writeService',function(elService,changeTab,writeService){
   var fc= this;
 
-  fc.storeData= function(){
-
-	 console.log("guest name: " + fc.guestname);
-	 console.log("transition date: " + fc.transdate);
-	 console.log("dropoff/pickup: " + fc.pickdrop);
-	 console.log("location: " + fc.location);
-	 elService.talk();
+  fc.addGuest= function(){
+	 var formData= { guestname: fc.guestname,
+		             transdate: fc.transdate,
+					  pickdrop: fc.pickdrop,
+					  location: fc.location
+                   };
+	 writeService.addGuest(formData);
 	 changeTab.execute();
-	 console.log("myStorage: " + fc.myStorage);
-	 console.log("localStorage.length: " + localStorage.length);
-	 console.log("localStorage.keys: ");
-	 for (var key in localStorage){
-		 console.log("     * " + key);
-		 localStorage.removeItem(key);
-	 }
   };
+
+
 
 }]);
 
 
 
 // Controller 2 of 2
-app.controller('guestController', [function(){
+app.controller('guestController', ['readService',function(readService){
 	var gc= this;
-    
-
-	// Initialize guest list on application startup
-	if(localStorage.length === 0)
-    {    localStorage.guests= JSON.stringify(app.guests);
-    }
-
-    gc.guests= JSON.parse(localStorage.guests);
+    gc.guests= readService.read();
 
 	gc.mesg= "this is a variable test";
 
@@ -69,18 +57,18 @@ app.controller('guestController', [function(){
 
 
 
-
-// Service 1 of 2
+	
+// Service 1 of 4
 app.service('elService', [function(){
     this.talk= function(){
 	   console.log("elService() at your service...");
-	};	   
+	};
 
 }]);
 
 
 
-// Service 2 of 2
+// Service 2 of 4
 app.service('changeTab', [function(){
 	this.execute= function(){
        var target = $(".nav-tabs li.active");
@@ -91,5 +79,39 @@ app.service('changeTab', [function(){
 	};
 
 }]);
+
+
+// Service 3 of 4
+app.service('readService', [function(){
+	var readSvc= this;
+
+	readSvc.read= function(){
+	   // Initialize guest list on application startup
+	   if(localStorage.length === 0)
+       {    localStorage.guests= JSON.stringify(app.guests);
+       }
+
+	   readSvc.guests= JSON.parse(localStorage.guests);
+	   return readSvc.guests;
+	};
+
+}]);
+
+
+	
+// Service 4 of 4
+app.service('writeService', [function(){
+    var writeSvc= this;
+
+	writeSvc.addGuest= function(formData){
+
+	   writeSvc.guests= JSON.parse(localStorage.guests);
+       writeSvc.guests.push(formData);
+       localStorage.guests= JSON.stringify(writeSvc.guests);
+	};
+
+
+}]);
+
 
 
