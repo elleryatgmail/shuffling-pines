@@ -1,11 +1,10 @@
 
-
 // Application
 var app = angular.module('shuffling', []);
 
-// localStorage.removeItem('guests');
 
-// initialize guest list with some data at app startup
+
+// sample guest list for initialization purposes
 app.guests= [{  guestname: "Santa Claus",
 	            transdate: "2015-12-25T06:00:00.000Z",
 			     pickdrop: "pickup",
@@ -25,7 +24,7 @@ app.guests= [{  guestname: "Santa Claus",
 
 
 // Controller 1 of 2
-app.controller('formController', ['elService','changeTab','writeService',function(elService,changeTab,writeService){
+app.controller('formController', ['elService','changeTab','writeService','readService',function(elService,changeTab,writeService,readService){
   var fc= this;
 
   fc.addGuest= function(){
@@ -38,20 +37,30 @@ app.controller('formController', ['elService','changeTab','writeService',functio
 	 changeTab.execute();
   };
 
-
-
 }]);
 
 
 
 // Controller 2 of 2
-app.controller('guestController', ['readService',function(readService){
+app.controller('guestController', ['readService','writeService',function(readService,writeService){
 	var gc= this;
     gc.guests= readService.read();
 
-	gc.mesg= "this is a variable test";
+    gc.removeGuest= function(index){
+	  writeService.removeGuest(index);
+      gc.guests= readService.read();
+	  console.log("index: " + index);
+    };
+
+	gc.mesg= " ";
 
 }]);
+
+
+
+
+
+
 
 
 
@@ -68,6 +77,7 @@ app.service('elService', [function(){
 
 
 
+
 // Service 2 of 4
 app.service('changeTab', [function(){
 	this.execute= function(){
@@ -79,6 +89,8 @@ app.service('changeTab', [function(){
 	};
 
 }]);
+
+
 
 
 // Service 3 of 4
@@ -98,7 +110,8 @@ app.service('readService', [function(){
 }]);
 
 
-	
+
+
 // Service 4 of 4
 app.service('writeService', [function(){
     var writeSvc= this;
@@ -111,7 +124,14 @@ app.service('writeService', [function(){
 	};
 
 
+	writeSvc.removeGuest= function(index){
+	   writeSvc.guests= JSON.parse(localStorage.guests);
+	   writeSvc.guests.splice(index,1);
+       localStorage.guests= JSON.stringify(writeSvc.guests);
+	};
+
 }]);
+
 
 
 

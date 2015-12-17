@@ -96,12 +96,11 @@
 
 
 
-
           <!-- Tab pane 2 -->
           <div role="tabpanel" class="tab-pane" id="guests" ng-controller="guestController as gc">
 			  {{ gc.mesg }}
             <ul class="list-group">
-				<li class="list-group-item" ng-repeat="(index,guest) in gc.guests"> {{ guest.guestname }} <button ng-click="gc.removeUser(index)">remove</button></li>
+				<li class="list-group-item" ng-repeat="(index,guest) in gc.guests"> {{ guest.guestname }} <button ng-click="gc.removeGuest(index);">remove</button></li>
             </ul>
           </div>
 
